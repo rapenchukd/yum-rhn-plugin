@@ -2,16 +2,16 @@ yum-rhn-cookbook
 =================
 Cookbook for installing and configuring yum-rhn-plugin for use with RHN, Satellite, or Spacewalk
 
-## Supported platforms
+# Supported platforms
 - EL 5.X platforms
 - EL 6.X platforms
 
-## Usage
+# Usage
 
 This out of the box this cookbook will configure the standard [main] rhn channel after installation of yum plugin,
 additional channels may be added via data bags.
 
-# Attributes
+## Attributes
 
 ['yum-rhn']['source'] - Set to specify location to obtain rpm from non yum-configured source. Leaving nil will install via yum.
 
@@ -21,7 +21,7 @@ additional channels may be added via data bags.
 
 ['yum-rhn']['main']['gpg-check'] - 1/0 bit to enable/disable GPG checks for main channel
 
-# Data Bag Items
+## Data Bag Items
 
 For each channel you wish to configure, add a data bag item like so:
 
@@ -40,11 +40,12 @@ enabled=1
 gpg-check=0
 ```
 
-# Recipes
+## Recipes
 
 ::default - Installs yum-rhn-plugin then includes ::config
+
 ::config - Configures yum-rhn plugin
 
-# Author
+## Author
 
 Author:: Drew Rapenchuk (rapenchuk@linux.com)
