@@ -1,0 +1,13 @@
+<% if channel == "main" -%>
+#Do no edit this file
+#Changes will be overwritten next chef run!
+
+[<%= channel %>]
+enabled = <%= is_enabled %>
+gpgcheck = <%= gpg_check %>
+<% else -%>
+
+[<%= channel %>]
+enabled = <%= is_enabled %>
+gpgcheck = <%= gpg_check %>
+<% end -%>
