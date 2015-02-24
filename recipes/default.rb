@@ -23,12 +23,12 @@ unless node['yum-rhn']['source'].nil?
     source node['yum-rhn']['source']
     action :create
   end
-  package 'yum-rhn-plugin.noarch' do
+  package 'yum-rhn-plugin' do
     source "#{Chef::Config[:file_cache_path]}/yum-rhn-plugin.noarch.rpm"
     action :install
   end
 else
-  package 'yum-rhn-plugin.noarch' do
+  package 'yum-rhn-plugin' do
     action :install
   end
 end
