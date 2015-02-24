@@ -19,29 +19,37 @@
 #
 cache_path = Chef::Config['file_cache_path']
 
-template '#{cache_path}/main.rhn.conf' do
+template "#{cache_path}/0main.rhn.conf" do
   source 'rhnplugin.conf.erb'
   variables(
-    :channel => main
-    :enabled  => node['yum-rhn']['main']['enabled']
-    :gpg_check => node['yum-rhn']['main']['gpg-check']
+    channel: 'main',
+    enabled: node['yum-rhn']['main']['enabled'],
+    gpg_check: node['yum-rhn']['main']['gpg-check']
   )
+  action :create
 end
 
 unless node['yum-rhn']['data_bag'].nil?
-data_bag(node['yum-rhn']['data_bag']).each do |value|
-  item = data_bag_item(node['yum-rhn']['data_bag'], value)
-  template '#{cache_path}/value.rhn.conf' do
-    source 'rhnplugin.conf.erb'
-    variables(
-      :channel => item['channel']
-      :is_enabled => item['enabled']
-      :gpg_check => item['gpg-check']
-    )
+  data_bag(node['yum-rhn']['data_bag']).each do |value|
+    item = data_bag_item(node['yum-rhn']['data_bag'], value)
+    template "#{cache_path}/value.rhn.conf" do
+      source 'rhnplugin.conf.erb'
+      variables(
+        channel: item['channel'],
+        is_enabled: item['enabled'],
+        gpg_check: item['gpg-check']
+      )
+    end
   end
 end
 
 file "/etc/yum/pluginconf.d/rhnplugin.conf" do
-  content IO.read(#{cache_path}/*.rhn.conf).each
+  owner 'root'
+  group 'root'
+  mode '0644'
+  action :touch
+end
+
+execute "cat #{Chef::Config['file_cache_path']}/*.rhn.conf > /etc/yum/pluginconf.d/rhnplugin.conf" do
 end
 
