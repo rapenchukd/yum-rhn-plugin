@@ -8,7 +8,7 @@ Cookbook for installing and configuring yum-rhn-plugin for use with RHN, Satelli
 
 # Usage
 
-This out of the box this cookbook will configure the standard [main] rhn channel after installation of yum plugin,
+Out of the box this cookbook will configure the standard [main] rhn channel after installation of yum plugin,
 additional channels may be added via data bags.
 
 ## Attributes
