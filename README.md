@@ -5,6 +5,7 @@ Cookbook for installing and configuring yum-rhn-plugin for use with RHN, Satelli
 # Supported platforms
 - EL 5.X platforms
 - EL 6.X platforms
+- EL 7.X platforms
 
 # Usage
 
