@@ -1,4 +1,4 @@
-yum-rhn-cookbook
+yum-rhn-plugin Cookbook
 =================
 Cookbook for installing and configuring yum-rhn-plugin for use with RHN, Satellite, or Spacewalk
 
@@ -8,6 +8,8 @@ Cookbook for installing and configuring yum-rhn-plugin for use with RHN, Satelli
 - EL 7.X platforms
 
 # Usage
+
+Put `depends 'yum-rhn-plugin'` in your metadata.rb
 
 Out of the box this cookbook will configure the standard [main] rhn channel after installation of yum plugin,
 additional channels may be added via data bags.
