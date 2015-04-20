@@ -11,3 +11,7 @@ gpgcheck = <%= @gpg_check %>
 enabled = <%= @enabled %>
 gpgcheck = <%= @gpg_check %>
 <% end -%>
+
+<% @included_files.each { |file|  %>
+<%= File.read(file) %>    
+<% } %>
